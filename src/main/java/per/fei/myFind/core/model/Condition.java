@@ -1,7 +1,11 @@
 package per.fei.myFind.core.model;
 
-import java.io.File;
+import lombok.Getter;
+import lombok.Setter;
 
+import java.io.File;
+@Getter
+@Setter
 public class Condition {
     //按名字查找
     private String name;

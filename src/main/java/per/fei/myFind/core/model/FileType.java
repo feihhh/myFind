@@ -53,6 +53,11 @@ public enum FileType {
         return FileType.OTHER;
     }
 
+    /**
+     * 通过类型名获取文件类型
+     * @param name 类型名
+     * @return 返回文件类型
+     */
     public static FileType lookUpByName(String name)
     {
         for (FileType fileType : FileType.values())
