@@ -9,5 +9,8 @@
         <module name="find_in_windows" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="find_in_windows" target="1.8" />
+    </bytecodeTargetLevel>
   </component>
 </project>
