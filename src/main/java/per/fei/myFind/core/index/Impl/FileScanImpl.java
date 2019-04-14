@@ -35,6 +35,6 @@ public class FileScanImpl implements FileScan {
 
 //    public static void main(String[] args) {
 //        FileScan fileScan = new FileScanImpl();
-//        fileScan.index(new File("D:\\我的\\课件"));
+//        fileScan.index(new File("C:\\Users\\ASUS\\Desktop\\新建文件夹 (2)"));
 //    }
 }

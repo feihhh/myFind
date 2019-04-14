@@ -66,7 +66,6 @@ public class FileDaoImpl implements FileDao {
     @Override
     public List<Things> find(Condition condition) {
 
-        Things things = new Things();
         List<Things> list= new LinkedList<>();
         Connection connection = null;
         PreparedStatement statement = null;
@@ -93,6 +92,7 @@ public class FileDaoImpl implements FileDao {
 
             while (resultSet.next())
             {
+                Things things = new Things();
                 things.setName(resultSet.getString("name"));
                 things.setDepth(resultSet.getInt("depth"));
                 things.setPath(resultSet.getString("path"));
@@ -134,7 +134,6 @@ public class FileDaoImpl implements FileDao {
 
     @Override
     public void delete(Things things) {
-
         Connection connection = null;
         PreparedStatement statement = null;
 
@@ -189,5 +188,15 @@ public class FileDaoImpl implements FileDao {
 //        }
 //        fileDao.delete(thing);
 
+//
+//        ConvertFileToThings con = new ConvertFileToThings();
+//
+//        File file = new File("C:\\Users\\ASUS\\Desktop\\新建文件夹 (2)\\aix\\aaaa");
+//        if (file.exists())
+//        {
+//            Things things = con.convertFileToThings(file);
+//            fileDao.delete(things);
+//        }
 //    }
+
 }
