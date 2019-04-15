@@ -5,12 +5,28 @@ import per.fei.myFind.core.dao.FileDao;
 import per.fei.myFind.core.dao.FileDaoImpl.FileDaoImpl;
 import per.fei.myFind.core.index.FileScan;
 import per.fei.myFind.core.index.Impl.FileScanImpl;
+import per.fei.myFind.core.intercapter.ThingClearIntercapter.ThingClearIntercapter;
+import per.fei.myFind.core.intercapter.ThingIntercapter;
 import per.fei.myFind.core.model.Condition;
 import per.fei.myFind.core.model.FileType;
+import per.fei.myFind.core.model.Things;
+import per.fei.myFind.core.search.Impl.SearchImpl;
+import per.fei.myFind.core.search.Search;
 
+import javax.sql.DataSource;
+import java.io.File;
+import java.util.Iterator;
+import java.util.List;
 import java.util.Scanner;
 
 public class AllManager {
+
+    private FileDao fileDao;
+
+    public AllManager(FileDao fileDao)
+    {
+        this.fileDao = fileDao;
+    }
 
     public void help ()
     {
@@ -28,11 +44,19 @@ public class AllManager {
 
     public void index()
     {
-        // TODO 创建线程池，建立索引
+
     }
 
     public void search (Condition condition)
     {
-        // TODO 查询文件信息
+
+        // TODO 设置排序，最大限制等初始值
+        Search search = new SearchImpl(this.fileDao);
+        List<Things> list = search.find(condition);
+        Iterator iterator = list.iterator();
+        while (iterator.hasNext())
+        {
+            System.out.println(iterator.next());
+        }
     }
 }

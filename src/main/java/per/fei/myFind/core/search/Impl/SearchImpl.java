@@ -26,9 +26,9 @@ public class SearchImpl implements Search {
 
     private FileDao fileDao;
 
-    public SearchImpl(DataSource dataSource, ThingIntercapter intercapter) {
+    public SearchImpl(FileDao fileDao) {
         this.dataSource = DataSourceFactory.getInstence();
-        this.fileDao = new FileDaoImpl(this.dataSource);
+        this.fileDao = fileDao;
         this.intercapter = new ThingClearIntercapter(this.fileDao, this.queue);
         //调用后台清理线程
         this.BackGroundCleanThread();

@@ -2,37 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="cb2259fb-27f4-4575-8208-762475392184" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/find_in_windows.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__com_alibaba_druid_1_1_13.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__com_h2database_h2_1_4_197.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__mysql_mysql_connector_java_5_1_47.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_projectlombok_lombok_1_18_4.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/per/fei/myFind/cmd/MyFindCmdApp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/per/fei/myFind/cmd/MyFindCmdApp.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/per/fei/myFind/core/dao/FileDaoImpl/FileDaoImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/per/fei/myFind/core/dao/FileDaoImpl/FileDaoImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/per/fei/myFind/core/index/Impl/FileScanImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/per/fei/myFind/core/index/Impl/FileScanImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/per/fei/myFind/core/intercapter/ThingClearIntercapter/ThingClearIntercapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/per/fei/myFind/core/intercapter/ThingClearIntercapter/ThingClearIntercapter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/per/fei/myFind/core/search/Impl/SearchImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/per/fei/myFind/core/search/Impl/SearchImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/per/fei/myFind/core/search/Search.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/per/fei/myFind/core/search/Search.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/per/fei/myFind/cmd/MyFindCmdApp.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/per/fei/myFind/core/common/ConvertFileToThings.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/per/fei/myFind/core/dao/DataSourceFactory.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/per/fei/myFind/core/dao/FileDao.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/per/fei/myFind/core/dao/FileDaoImpl/FileDaoImpl.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/per/fei/myFind/core/index/FileScan.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/per/fei/myFind/core/index/Impl/FileScanImpl.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/per/fei/myFind/core/intercapter/FileIntercapter.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/per/fei/myFind/core/intercapter/Impl/PrintIntercapter.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/per/fei/myFind/core/intercapter/Impl/ScannerIntercapter.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/per/fei/myFind/core/model/Condition.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/per/fei/myFind/core/model/FileType.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/per/fei/myFind/core/model/Things.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/per/fei/myFind/core/search/Impl/SearchImpl.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/per/fei/myFind/core/search/Search.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/per/fei/myFind/core/AllManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/per/fei/myFind/core/AllManager.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -47,7 +18,7 @@
       <file leaf-file-name="MyFindCmdApp.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/per/fei/myFind/cmd/MyFindCmdApp.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="352">
+            <state relative-caret-position="594">
               <caret line="34" selection-start-line="34" selection-end-line="34" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -56,15 +27,55 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="AllManager.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="AllManager.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/per/fei/myFind/core/AllManager.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="464">
-              <caret line="35" column="22" lean-forward="true" selection-start-line="35" selection-start-column="22" selection-end-line="35" selection-end-column="22" />
+            <state relative-caret-position="148">
+              <caret line="30" column="23" selection-start-line="30" selection-start-column="23" selection-end-line="30" selection-end-column="23" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#687#688#0" expanded="true" />
-                <element signature="e#718#719#0" expanded="true" />
+                <element signature="e#1046#1047#0" expanded="true" />
+                <element signature="e#1077#1078#0" expanded="true" />
+                <element signature="e#1208#1209#0" expanded="true" />
+                <element signature="e#1229#1230#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ThingClearIntercapter.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/per/fei/myFind/core/intercapter/ThingClearIntercapter/ThingClearIntercapter.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="418">
+              <caret line="27" column="24" selection-start-line="27" selection-start-column="24" selection-end-line="27" selection-end-column="24" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#805#806#0" expanded="true" />
+                <element signature="e#848#849#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="SearchImpl.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/per/fei/myFind/core/search/Impl/SearchImpl.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="110">
+              <caret line="29" column="29" selection-start-line="29" selection-start-column="29" selection-end-line="29" selection-end-column="29" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Search.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/per/fei/myFind/core/search/Search.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="308">
+              <caret line="21" column="20" selection-start-line="21" selection-start-column="20" selection-end-line="21" selection-end-column="20" />
+              <folding>
+                <element signature="imports" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -109,7 +120,7 @@
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="-7" />
-    <option name="width" value="697" />
+    <option name="width" value="749" />
     <option name="height" value="745" />
   </component>
   <component name="ProjectLevelVcsManager">
@@ -120,8 +131,9 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="PackagesPane" />
+      <pane id="AndroidView" />
       <pane id="Scope" />
+      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -324,7 +336,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="AndroidView" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -486,15 +497,18 @@
       <workItem from="1555228400685" duration="633000" />
       <workItem from="1555230261516" duration="3902000" />
       <workItem from="1555234765877" duration="284000" />
+      <workItem from="1555294754876" duration="436000" />
+      <workItem from="1555295366254" duration="22000" />
+      <workItem from="1555295436553" duration="202000" />
+      <workItem from="1555295770164" duration="366000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="14634000" />
+    <option name="totallyTimeSpent" value="15660000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="754" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info anchor="right" id="Palette" order="3" />
       <window_info anchor="bottom" id="TODO" order="6" />
@@ -504,26 +518,26 @@
       <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" />
       <window_info anchor="right" id="Maven Projects" order="3" />
       <window_info anchor="bottom" id="Database Changes" order="7" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Version Control" order="7" />
       <window_info anchor="bottom" id="Run" order="2" weight="0.54606366" />
+      <window_info anchor="bottom" id="Version Control" order="7" />
       <window_info anchor="bottom" id="Terminal" order="7" />
       <window_info id="Capture Tool" order="2" />
       <window_info id="Designer" order="2" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.7319933" visible="true" weight="0.32980332" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.7319933" visible="true" weight="0.3207262" />
       <window_info anchor="right" id="Database" order="3" />
       <window_info id="Structure" order="1" sideWeight="0.2680067" side_tool="true" weight="0.32980332" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info id="UI Designer" order="2" />
       <window_info anchor="right" id="Theme Preview" order="3" />
-      <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.3551089" />
+      <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="Messages" order="7" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Messages" order="7" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -608,8 +622,8 @@
           <caret line="33" column="9" lean-forward="true" selection-start-line="33" selection-start-column="9" selection-end-line="33" selection-end-column="9" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#756#757#0" expanded="true" />
-            <element signature="e#799#800#0" expanded="true" />
+            <element signature="e#805#806#0" expanded="true" />
+            <element signature="e#848#849#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -651,8 +665,8 @@
           <caret line="11" column="66" selection-start-line="11" selection-start-column="66" selection-end-line="11" selection-end-column="66" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#756#757#0" expanded="true" />
-            <element signature="e#799#800#0" expanded="true" />
+            <element signature="e#805#806#0" expanded="true" />
+            <element signature="e#848#849#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -840,18 +854,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/per/fei/myFind/core/intercapter/ThingClearIntercapter/ThingClearIntercapter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="181">
-          <caret line="27" column="26" selection-start-line="27" selection-start-column="26" selection-end-line="27" selection-end-column="26" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#756#757#0" expanded="true" />
-            <element signature="e#799#800#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/per/fei/myFind/core/dao/FileDao.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="506">
@@ -885,16 +887,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/per/fei/myFind/core/search/Impl/SearchImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1518">
-          <caret line="69" column="31" selection-start-line="69" selection-start-column="31" selection-end-line="69" selection-end-column="31" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/per/fei/myFind/core/index/Impl/FileScanImpl.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="726">
@@ -902,20 +894,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/per/fei/myFind/core/search/Search.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="126">
-          <caret line="7" column="8" selection-start-line="7" selection-start-column="8" selection-end-line="7" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/per/fei/myFind/config/DefaultConfig.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-358">
           <caret line="21" column="17" selection-start-line="21" selection-start-column="17" selection-end-line="21" selection-end-column="17" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -923,9 +905,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-88">
           <caret line="35" column="18" selection-start-line="35" selection-start-column="18" selection-end-line="35" selection-end-column="18" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -947,16 +926,12 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="379">
           <caret line="972" lean-forward="true" selection-start-line="972" selection-end-line="972" />
-          <folding>
-            <element signature="e#40171#40172#0" expanded="true" />
-            <element signature="e#40220#40221#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/per/fei/myFind/cmd/MyFindCmdApp.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="352">
+        <state relative-caret-position="594">
           <caret line="34" selection-start-line="34" selection-end-line="34" />
           <folding>
             <element signature="imports" expanded="true" />
@@ -964,14 +939,48 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/per/fei/myFind/core/AllManager.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/per/fei/myFind/core/search/Search.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="464">
-          <caret line="35" column="22" lean-forward="true" selection-start-line="35" selection-start-column="22" selection-end-line="35" selection-end-column="22" />
+        <state relative-caret-position="308">
+          <caret line="21" column="20" selection-start-line="21" selection-start-column="20" selection-end-line="21" selection-end-column="20" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#687#688#0" expanded="true" />
-            <element signature="e#718#719#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/per/fei/myFind/core/intercapter/ThingClearIntercapter/ThingClearIntercapter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="418">
+          <caret line="27" column="24" selection-start-line="27" selection-start-column="24" selection-end-line="27" selection-end-column="24" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#805#806#0" expanded="true" />
+            <element signature="e#848#849#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/per/fei/myFind/core/AllManager.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="148">
+          <caret line="30" column="23" selection-start-line="30" selection-start-column="23" selection-end-line="30" selection-end-column="23" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#1046#1047#0" expanded="true" />
+            <element signature="e#1077#1078#0" expanded="true" />
+            <element signature="e#1208#1209#0" expanded="true" />
+            <element signature="e#1229#1230#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/per/fei/myFind/core/search/Impl/SearchImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="110">
+          <caret line="29" column="29" selection-start-line="29" selection-start-column="29" selection-end-line="29" selection-end-column="29" />
+          <folding>
+            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
