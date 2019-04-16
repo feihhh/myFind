@@ -1,5 +1,7 @@
 package per.fei.myFind.core;
 
+import per.fei.myFind.config.DefaultConfig;
+import per.fei.myFind.config.HandlePath;
 import per.fei.myFind.core.dao.DataSourceFactory;
 import per.fei.myFind.core.dao.FileDao;
 import per.fei.myFind.core.dao.FileDaoImpl.FileDaoImpl;
@@ -15,17 +17,45 @@ import per.fei.myFind.core.search.Search;
 
 import javax.sql.DataSource;
 import java.io.File;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
+import java.util.concurrent.CountDownLatch;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 public class AllManager {
 
     private FileDao fileDao;
 
-    public AllManager(FileDao fileDao)
+    private DataSource dataSource;
+
+    private final ExecutorService executorService =
+            Executors.newFixedThreadPool(Runtime.getRuntime().
+                    availableProcessors()*2);
+
+    private FileScan fileScan;
+
+    private AllManager()
     {
-        this.fileDao = fileDao;
+        dataSource = DataSourceFactory.getInstence();
+        this.fileDao = new FileDaoImpl(this.dataSource);
+        fileScan = new FileScanImpl();
+    }
+
+    private static volatile AllManager manager ;
+
+    public static AllManager getManager()
+    {
+        if (manager == null)
+        {
+            synchronized (AllManager.class)
+            {
+                if (manager == null)
+                {
+                    manager = new AllManager();
+                }
+            }
+        }
+        return manager;
     }
 
     public void help ()
@@ -39,18 +69,58 @@ public class AllManager {
 
     public void quit ()
     {
-        System.exit(-1);
+        System.exit(0);
     }
 
+
+    private DefaultConfig config = DefaultConfig.getConfig();
     public void index()
     {
+        HandlePath handlePath = config.getHandlePath();
+        Set<String> includePath = handlePath.getIncludePath();
 
+        new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+
+                        System.out.println("build index start ...");
+                        System.out.println("start time:"+new Date());
+                        //用来阻塞构建索引的线程，当所有现场都把索引剪完之后在继续朝后执行
+                        final CountDownLatch countDownLatch = new CountDownLatch(includePath.size());
+                        for (String path : includePath)
+                        {
+                            executorService.submit(new Runnable() {
+                                @Override
+                                public void run() {
+                                    File file = new File(path);
+                                    fileScan.index(file);
+                                    countDownLatch.countDown();
+                                }
+                            });
+                        }
+                        try{
+                            countDownLatch.await();
+                        }catch (InterruptedException e)
+                        {
+                            e.printStackTrace();
+                        }
+                        System.out.println("Build Index Finish...");
+                        System.out.println("finish time:"+new Date());
+                    }
+                }).start();
     }
 
-    public void search (Condition condition)
+    public void search (String[] cons)
     {
 
+        Condition condition = new Condition();
+        //"搜索 ：search <文件名> [<文件类型>  doc | img | video | bin | archive| other]");
+        condition.setName(cons[1]);
+
+        condition.setFileType((cons.length > 2)?FileType.lookUpByExtends(cons[2]):null);
+
         // TODO 设置排序，最大限制等初始值
+
         Search search = new SearchImpl(this.fileDao);
         List<Things> list = search.find(condition);
         Iterator iterator = list.iterator();

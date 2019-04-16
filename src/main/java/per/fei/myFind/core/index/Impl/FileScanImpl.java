@@ -17,8 +17,8 @@ public class FileScanImpl implements FileScan {
         //添加文件拦截器
         //打印拦截
         //写入数据库拦截
-        FileIntercapter f = new PrintIntercapter();
-        f.intercapter(file);
+//        FileIntercapter f = new PrintIntercapter();
+//        f.intercapter(file);
         FileIntercapter f1 = new ScannerIntercapter(new FileDaoImpl(DataSourceFactory.getInstence()));
         f1.intercapter(file);
 
