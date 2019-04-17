@@ -23,7 +23,7 @@
             <name>fei</name>
             <email>2350998354@qq.com</email>
             <roles>
-                <role>Create</role>
+                <role>Creater</role>
                 <role>Developer</role>
             </roles>
         </developer>
@@ -57,6 +57,14 @@
             <version>1.4.197</version>
         </dependency>
 
+        <!--Commons IO 可以进行一些文件的io操作，在这里主要用于文件系统监控 用来检测文件系统在是否有新增文件-->
+        <!--<dependency>-->
+            <!--<groupId>org.lucee</groupId>-->
+            <!--<artifactId>commons-io</artifactId>-->
+            <!--<version>2.6.0</version>-->
+            <!--<type>bundle</type>-->
+        <!--</dependency>-->
+
         <!--MySQL数据库-->
         <dependency>
             <groupId>mysql</groupId>
@@ -64,7 +72,6 @@
             <version>5.1.47</version>
         </dependency>
 
-        <!--Commons IO 可以进行一些文件的io操作，在这里主要用于文件系统监控 用来检测文件系统在是否有新增文件-->
 
 
     </dependencies>
@@ -91,8 +98,6 @@
                     <archive>
                         <manifest>
                             <!--配置主类-->
-
-
                             <mainClass>per.fei.myFind.cmd.MyFindCmdApp</mainClass>
                             <addClasspath>true</addClasspath>
                             <classpathPrefix>lib</classpathPrefix>

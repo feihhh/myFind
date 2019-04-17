@@ -60,8 +60,8 @@ public class HandlePath {
         return handlePath;
     }
 
-//    public static void main(String[] args) {
-//        HandlePath handlePath = new HandlePath();
-//        System.out.println(handlePath.getDefaultPath());
-//    }
+    public static void main(String[] args) {
+        HandlePath handlePath = new HandlePath();
+        System.out.println(handlePath.getDefaultPath());
+    }
 }

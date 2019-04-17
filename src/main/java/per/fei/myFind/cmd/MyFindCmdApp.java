@@ -1,25 +1,18 @@
 package per.fei.myFind.cmd;
 
-
 import per.fei.myFind.core.AllManager;
-import per.fei.myFind.core.model.Condition;
-
-import java.util.Date;
 import java.util.Scanner;
 
 public class MyFindCmdApp {
 
     public static void main(String[] args)
     {
-        System.out.println("欢迎使用私人版everything...");
-        try {
-            Thread.sleep(3000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+        System.out.println("欢迎使用everything...");
         Scanner scanner = new Scanner(System.in);
         while (true)
         {
+
+            System.out.print(">>");
             String str = scanner.nextLine();
 
             switch (str)

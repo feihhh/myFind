@@ -8,14 +8,13 @@ public interface FileScan {
 
     /**
      * 将文件存入数据库
-     * @param file
+     * @param path
      */
-    void index(File file);
+    void index(String path);
 
 //    测试代码：
 //    static void main(String[] args) {
-//        File file = new File("D:\\WorkPlace");
 //        FileScan fileScan = new FileScanImpl();
-//        fileScan.index(file);
+//        fileScan.index("E:\\");
 //    }
 }

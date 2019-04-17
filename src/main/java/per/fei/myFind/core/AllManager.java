@@ -92,8 +92,7 @@ public class AllManager {
                             executorService.submit(new Runnable() {
                                 @Override
                                 public void run() {
-                                    File file = new File(path);
-                                    fileScan.index(file);
+                                    fileScan.index(path);
                                     countDownLatch.countDown();
                                 }
                             });

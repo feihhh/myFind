@@ -1,8 +1,13 @@
 package per.fei.myFind.core.dao;
 
 import com.alibaba.druid.pool.DruidDataSource;
+import jdk.internal.util.xml.impl.Input;
 
 import javax.sql.DataSource;
+import java.io.*;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 
 
 /**
@@ -27,24 +32,69 @@ public class DataSourceFactory {
                         /**
                          * mysql的连接方式
                          */
+//                        instence = new DruidDataSource();
+//                        instence.setDriverClassName("com.mysql.jdbc.Driver");
+//                        instence.setUrl("jdbc:mysql://localhost:3306/find");
+//                        instence.setUsername("root");
+//                        instence.setPassword("123456");
+                        //h2数据库
                         instence = new DruidDataSource();
-                        instence.setDriverClassName("com.mysql.jdbc.Driver");
-                        instence.setUrl("jdbc:mysql://localhost:3306/find");
-                        instence.setUsername("root");
-                        instence.setPassword("123456");
+                        instence.setDriverClassName("org.h2.Driver");
+                        String path = System.getProperty("user.dir")+ File.separator+"find_database";
+                        instence.setUrl("jdbc:h2:"+path);
+                        instence.setTestWhileIdle(false);
+                        initDataSource(true);
                     }
                 }
             }
             return instence;
         }
 
+        //初始化数据源
+        private static void initDataSource (boolean flag)
+        {
+            StringBuffer sb = new StringBuffer();
+
+            try(InputStream in = DataSourceFactory.class.getClassLoader().getResourceAsStream("my_find.sql"))
+            {
+                if (in != null)
+                {
+                    BufferedReader reader = new BufferedReader(new InputStreamReader(in));
+                    String line = null;
+                    while ((line=reader.readLine()) != null)
+                    {
+                        sb.append(line);
+                    }
+                }
+                else {
+                    throw new RuntimeException("dataSource init error");
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+            String sql = sb.toString();
+
+            try(Connection connection = getInstence().getConnection())
+            {
+                if (flag)
+                {
+                    PreparedStatement statement = connection.prepareStatement("drop table if exists files");
+                    statement.executeUpdate();
+                }
+
+                PreparedStatement statement = connection.prepareStatement(sql);
+                statement.executeUpdate();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+
 
 //    测试代码
-//    public static void main(String[] args) throws SQLException {
-//        Connection connection = DataSourceFactory.getInstence().getConnection();
-//        String sql = "insert into files (name, depth, file_type, path) values ('haha', 15, 'DOC', 'D://haha')";
-//        PreparedStatement statement = connection.prepareStatement(sql);
-//        statement.executeUpdate();
-//    }
+    public static void main(String[] args) throws SQLException {
+        String path = System.getProperty("user.dir")+ File.separator+"find_database";
+        System.out.println(path);
+    }
 
 }
