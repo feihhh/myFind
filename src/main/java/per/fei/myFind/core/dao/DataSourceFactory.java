@@ -43,7 +43,7 @@ public class DataSourceFactory {
                         String path = System.getProperty("user.dir")+ File.separator+"find_database";
                         instence.setUrl("jdbc:h2:"+path);
                         instence.setTestWhileIdle(false);
-                        initDataSource(true);
+                        initDataSource(false);
                     }
                 }
             }
@@ -91,10 +91,10 @@ public class DataSourceFactory {
         }
 
 
-//    测试代码
-    public static void main(String[] args) throws SQLException {
-        String path = System.getProperty("user.dir")+ File.separator+"find_database";
-        System.out.println(path);
-    }
+////    测试代码
+//    public static void main(String[] args) throws SQLException {
+//        String path = System.getProperty("user.dir")+ File.separator+"find_database";
+//        System.out.println(path);
+//    }
 
 }

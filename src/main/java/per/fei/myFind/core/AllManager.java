@@ -9,6 +9,8 @@ import per.fei.myFind.core.index.FileScan;
 import per.fei.myFind.core.index.Impl.FileScanImpl;
 import per.fei.myFind.core.intercapter.ThingClearIntercapter.ThingClearIntercapter;
 import per.fei.myFind.core.intercapter.ThingIntercapter;
+import per.fei.myFind.core.minitor.FileMinitor;
+import per.fei.myFind.core.minitor.Impl.FileMnitorImpl;
 import per.fei.myFind.core.model.Condition;
 import per.fei.myFind.core.model.FileType;
 import per.fei.myFind.core.model.Things;
@@ -28,6 +30,8 @@ public class AllManager {
 
     private DataSource dataSource;
 
+    private FileMinitor fileMinitor;
+
     private final ExecutorService executorService =
             Executors.newFixedThreadPool(Runtime.getRuntime().
                     availableProcessors()*2);
@@ -39,6 +43,8 @@ public class AllManager {
         dataSource = DataSourceFactory.getInstence();
         this.fileDao = new FileDaoImpl(this.dataSource);
         fileScan = new FileScanImpl();
+        fileMinitor = new FileMnitorImpl(this.fileDao);
+        this.minitor();
     }
 
     private static volatile AllManager manager ;
@@ -69,6 +75,7 @@ public class AllManager {
 
     public void quit ()
     {
+        System.out.println("感谢使用...");
         System.exit(0);
     }
 
@@ -127,5 +134,15 @@ public class AllManager {
         {
             System.out.println(iterator.next());
         }
+    }
+
+    /**
+     * 文件监控
+     * 其中lambdd表达式实现了Runnable接口覆写run方法
+     */
+    void minitor()
+    {
+        fileMinitor.minitor(config.getHandlePath());
+        new Thread(() -> fileMinitor.start()).start();
     }
 }

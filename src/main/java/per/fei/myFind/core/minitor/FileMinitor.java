@@ -10,8 +10,8 @@ public interface FileMinitor {
     void start ();
 
     /**
-     * 要监听的目录
-     * @param handlePath
+     * 开始监听
+     * @param handlePath 要监听的目录
      */
     void minitor(HandlePath handlePath);
 

@@ -11,10 +11,8 @@ public class MyFindCmdApp {
         Scanner scanner = new Scanner(System.in);
         while (true)
         {
-
             System.out.print(">>");
             String str = scanner.nextLine();
-
             switch (str)
             {
                 case "help":
@@ -24,7 +22,6 @@ public class MyFindCmdApp {
                 }
                 case "quit":
                 {
-                    System.out.println("感谢使用...");
                     AllManager.getManager().quit();
                     break;
                 }

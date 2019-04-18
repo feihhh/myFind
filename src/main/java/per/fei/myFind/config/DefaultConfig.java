@@ -29,6 +29,12 @@ public class DefaultConfig {
      */
     private Boolean ifBuildIndex = false;
 
+
+    /**
+     * 文件监控的间隔时间 10秒
+     */
+    private Integer interval = 10*6000;
+
     private static volatile DefaultConfig config ;
 
     private DefaultConfig() {

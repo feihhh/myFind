@@ -30,8 +30,8 @@ public class FileScanImpl implements FileScan {
             }
         }
 
-        FileIntercapter f = new PrintIntercapter();
-        f.intercapter(file);
+//        FileIntercapter f = new PrintIntercapter();
+//        f.intercapter(file);
         FileIntercapter f1 = new ScannerIntercapter(new FileDaoImpl(DataSourceFactory.getInstence()));
         f1.intercapter(file);
 
