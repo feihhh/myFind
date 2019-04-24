@@ -112,7 +112,7 @@ public class FileMnitorImpl extends FileAlterationListenerAdaptor implements Fil
     @Override
     public void onFileDelete(File file) {
         System.out.println("FileDelete:"+file.getAbsolutePath());
-        this.fileDao.insert(this.convert.convertFileToThings(file));
+        this.fileDao.delete(this.convert.convertFileToThings(file));
     }
     //--------------------------------------------------------
 
