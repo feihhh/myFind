@@ -25,12 +25,12 @@ public class HandlePath {
     public HandlePath() {
     }
 
-    private void addIncludePath(String path)
+    public void addIncludePath(String path)
     {
         this.includePath.add(path);
     }
 
-    private void addExcludePath(String path)
+    public void addExcludePath(String path)
     {
         this.excludePath.add(path);
     }
@@ -51,10 +51,10 @@ public class HandlePath {
         if (systemPath.startsWith("Windows"))
         {
             //windows系统下要排除的目录
-            handlePath.excludePath.add("C:\\Program Files");
-            handlePath.excludePath.add("C:\\Program Files (x86)");
-            handlePath.excludePath.add("C:\\Windows");
-            handlePath.excludePath.add("C:\\ProgramData");
+            handlePath.addExcludePath("C:\\Program Files");
+            handlePath.addExcludePath("C:\\Program Files (x86)");
+            handlePath.addExcludePath("C:\\Windows");
+            handlePath.addExcludePath("C:\\ProgramData");
 
         }
         return handlePath;

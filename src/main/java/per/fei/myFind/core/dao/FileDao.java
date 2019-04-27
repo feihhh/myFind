@@ -4,7 +4,9 @@ import per.fei.myFind.core.model.Condition;
 import per.fei.myFind.core.model.Things;
 
 import java.sql.Connection;
+import java.util.LinkedHashSet;
 import java.util.List;
+import java.util.Set;
 
 public interface FileDao {
 
@@ -19,7 +21,7 @@ public interface FileDao {
      * @param condition 按条件查询
      * @return 返回查询结果
      */
-    List<Things> find(Condition condition);
+    LinkedHashSet<Things> find(Condition condition);
 
     /**
      * 删除数据库中的数据

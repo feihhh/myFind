@@ -11,9 +11,7 @@ import per.fei.myFind.core.model.Things;
 import per.fei.myFind.core.search.Search;
 import javax.sql.DataSource;
 import java.io.File;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Queue;
+import java.util.*;
 import java.util.concurrent.ArrayBlockingQueue;
 
 public class SearchImpl implements Search {
@@ -35,9 +33,9 @@ public class SearchImpl implements Search {
     }
 
     @Override
-    public List<Things> find(Condition condition) {
+    public LinkedHashSet<Things> find(Condition condition) {
         FileDao fileDao = new FileDaoImpl(this.dataSource);
-        List<Things> things = fileDao.find(condition);
+        LinkedHashSet<Things> things = fileDao.find(condition);
 
         Iterator<Things> iterator = things.iterator();
         while (iterator.hasNext())

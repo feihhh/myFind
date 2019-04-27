@@ -6,7 +6,10 @@ import per.fei.myFind.core.intercapter.ThingClearIntercapter.ThingClearIntercapt
 import per.fei.myFind.core.model.Condition;
 import per.fei.myFind.core.model.Things;
 import per.fei.myFind.core.search.Impl.SearchImpl;
+
+import java.util.LinkedHashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.concurrent.ArrayBlockingQueue;
 
 public interface Search {
@@ -16,7 +19,7 @@ public interface Search {
      * @param condition 查找条件
      * @return 返回查找的结果集
      */
-    List<Things> find(Condition condition);
+    LinkedHashSet<Things> find(Condition condition);
 
 
 //    public static void main(String[] args) {

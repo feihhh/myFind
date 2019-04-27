@@ -9,11 +9,11 @@
     <version>1.0.0</version>
 
     <packaging>jar</packaging>
-    <name>find_in_windows</name>
+    <name>myFind</name>
 
     <!--项目描述-->
     <description>
-        模拟Linux下的find命令，实现windows下的文件查找
+        在window下模拟实现Linux下的find命令
     </description>
 
     <!--开发者信息-->
@@ -23,7 +23,7 @@
             <name>fei</name>
             <email>2350998354@qq.com</email>
             <roles>
-                <role>Creater</role>
+                <role>Creates</role>
                 <role>Developer</role>
             </roles>
         </developer>
@@ -64,15 +64,6 @@
             <version>2.6</version>
         </dependency>
 
-        <!--MySQL数据库-->
-        <dependency>
-            <groupId>mysql</groupId>
-            <artifactId>mysql-connector-java</artifactId>
-            <version>5.1.47</version>
-        </dependency>
-
-
-
     </dependencies>
 
 
@@ -89,6 +80,7 @@
                 </configuration>
             </plugin>
 
+
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-jar-plugin</artifactId>
@@ -104,7 +96,6 @@
                     </archive>
                 </configuration>
             </plugin>
-
 
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -125,5 +116,4 @@
             </plugin>
         </plugins>
     </build>
-
 </project>

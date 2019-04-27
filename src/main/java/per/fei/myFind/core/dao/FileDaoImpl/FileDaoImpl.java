@@ -1,5 +1,6 @@
 package per.fei.myFind.core.dao.FileDaoImpl;
 
+import per.fei.myFind.config.DefaultConfig;
 import per.fei.myFind.core.dao.DataSourceFactory;
 import per.fei.myFind.core.dao.FileDao;
 import per.fei.myFind.core.model.Condition;
@@ -10,8 +11,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.LinkedList;
-import java.util.List;
+import java.util.*;
 
 public class FileDaoImpl implements FileDao {
 
@@ -30,14 +30,14 @@ public class FileDaoImpl implements FileDao {
 
         try {
             connection = this.dataSource.getConnection();
-            String sql = "insert into files (name, depth, file_type, path) values (?, ?, ?, ?)";
+            String sql = "insert into files (name, name_length, depth, file_type, path) values (?, ?, ?, ?, ?)";
             statement = connection.prepareStatement(sql);
-
-            statement.setString(1, things.getName());
-            statement.setInt(2, things.getDepth());
-            statement.setString(3, things.getFileType().toString());
-            statement.setString(4, things.getPath());
-
+            String name = things.getName();
+            statement.setString(1, name);
+            statement.setInt(2, name.contains(".")?name.split("\\.")[0].length():name.length());
+            statement.setInt(3, things.getDepth());
+            statement.setString(4, things.getFileType().toString());
+            statement.setString(5, things.getPath());
             statement.executeUpdate();
 
         } catch (SQLException e) {
@@ -63,10 +63,12 @@ public class FileDaoImpl implements FileDao {
         }
     }
 
-    @Override
-    public List<Things> find(Condition condition) {
+    private DefaultConfig config = DefaultConfig.getConfig();
 
-        List<Things> list= new LinkedList<>();
+    @Override
+    public LinkedHashSet<Things> find(Condition condition) {
+
+        LinkedHashSet<Things> set= new LinkedHashSet<>();
         Connection connection = null;
         PreparedStatement statement = null;
         ResultSet resultSet = null;
@@ -75,9 +77,9 @@ public class FileDaoImpl implements FileDao {
             connection = this.dataSource.getConnection();
 
             StringBuffer sql = new StringBuffer();
-            //"select name, depth, file_type, path from files
-            // where name like 'name%' and file_type = 'ft'";
-            sql.append("select name, depth, file_type, path from files where ");
+//            select * from files where name like 'word%' and file_type = 'doc'
+//            order by depth asc limit 30;
+            sql.append("select name, name_length, depth, file_type, path from files where ");
 
             sql.append("name like '").append(condition.getName()).append("%'");
 
@@ -85,6 +87,9 @@ public class FileDaoImpl implements FileDao {
             {
                 sql.append(" and file_type = '").append(condition.getFileType()).append("'");
             }
+
+            sql.append(" order by name_length ").append(config.getResultDefaultSortDesc()?"asc":"desc")
+                    .append(" limit ").append(config.getMaxLimit());
 
             statement = connection.prepareStatement(sql.toString());
 
@@ -97,7 +102,7 @@ public class FileDaoImpl implements FileDao {
                 things.setDepth(resultSet.getInt("depth"));
                 things.setPath(resultSet.getString("path"));
                 things.setFileType(FileType.lookUpByName(resultSet.getString("file_type")));
-                list.add(things);
+                set.add(things);
             }
 
         } catch (SQLException e) {
@@ -129,7 +134,7 @@ public class FileDaoImpl implements FileDao {
                 }
             }
         }
-        return list;
+        return set;
     }
 
     @Override
@@ -166,6 +171,7 @@ public class FileDaoImpl implements FileDao {
                 }
             }
         }
+
     }
 
 //    测试代码
@@ -197,6 +203,15 @@ public class FileDaoImpl implements FileDao {
 //            Things things = con.convertFileToThings(file);
 //            fileDao.delete(things);
 //        }
-//    }
+//
+public static void main(String[] args) {
+    String s = "aaa.a";
+    System.out.println(s.contains("."));
+    String[] a = s.split("\\.");
+    for (String i : a)
+    {
+        System.out.println(i);
+    }
+}
 
 }

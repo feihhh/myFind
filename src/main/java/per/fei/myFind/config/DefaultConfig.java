@@ -1,11 +1,12 @@
 package per.fei.myFind.config;
 
 import lombok.Getter;
+import lombok.Setter;
 import lombok.ToString;
-import per.fei.myFind.core.model.Condition;
 
 @ToString
 @Getter
+@Setter
 public class DefaultConfig {
 
     /**
@@ -28,7 +29,6 @@ public class DefaultConfig {
      * 是否默认建立索引 默认不建立索引
      */
     private Boolean ifBuildIndex = false;
-
 
     /**
      * 文件监控的间隔时间 10秒

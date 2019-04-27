@@ -9,6 +9,7 @@ import per.fei.myFind.core.common.ConvertFileToThings;
 import per.fei.myFind.core.dao.FileDao;
 import per.fei.myFind.core.dao.FileDaoImpl.FileDaoImpl;
 import per.fei.myFind.core.minitor.FileMinitor;
+import per.fei.myFind.core.minitor.MonitorToFIle;
 
 import java.io.File;
 import java.io.FileFilter;
@@ -22,6 +23,8 @@ public class FileMnitorImpl extends FileAlterationListenerAdaptor implements Fil
 
     private ConvertFileToThings convert ;
 
+    private MonitorToFIle write;
+
     public FileMnitorImpl(FileDao fileDao) {
         /**
          * DefaultConfig.getConfig().getInterval() 表示默认间隔时间
@@ -29,6 +32,7 @@ public class FileMnitorImpl extends FileAlterationListenerAdaptor implements Fil
         this.monitor = new FileAlterationMonitor(DefaultConfig.getConfig().getInterval());
         this.fileDao = fileDao;
         convert = new ConvertFileToThings();
+        this.write = new MonitorToFileImpl();
     }
 
     public FileMnitorImpl() {
@@ -85,7 +89,7 @@ public class FileMnitorImpl extends FileAlterationListenerAdaptor implements Fil
      */
     @Override
     public void onDirectoryCreate(File directory) {
-        System.out.println("DirectoryCreate:"+directory.getAbsolutePath());
+        write.write("DirectoryCreate:"+directory.getAbsolutePath());
         this.fileDao.insert(convert.convertFileToThings(directory));
     }
 
@@ -95,7 +99,7 @@ public class FileMnitorImpl extends FileAlterationListenerAdaptor implements Fil
      */
     @Override
     public void onDirectoryDelete(File directory) {
-        System.out.println("DirectoryDelete:"+directory.getAbsolutePath());
+        write.write("DirectoryDelete:"+directory.getAbsolutePath());
         this.fileDao.delete(this.convert.convertFileToThings(directory));
     }
 
@@ -105,13 +109,13 @@ public class FileMnitorImpl extends FileAlterationListenerAdaptor implements Fil
      */
     @Override
     public void onFileCreate(File file) {
-        System.out.println("FileCreate:"+file.getAbsolutePath());
+        write.write("FileCreate:"+file.getAbsolutePath());
         this.fileDao.insert(this.convert.convertFileToThings(file));
     }
 
     @Override
     public void onFileDelete(File file) {
-        System.out.println("FileDelete:"+file.getAbsolutePath());
+        write.write("FileDelete:"+file.getAbsolutePath());
         this.fileDao.delete(this.convert.convertFileToThings(file));
     }
     //--------------------------------------------------------

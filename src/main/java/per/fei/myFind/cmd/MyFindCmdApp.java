@@ -4,7 +4,6 @@ import per.fei.myFind.core.AllManager;
 import java.util.Scanner;
 
 public class MyFindCmdApp {
-
     public static void main(String[] args)
     {
         System.out.println("欢迎使用everything...");
@@ -35,14 +34,16 @@ public class MyFindCmdApp {
                     if (str.startsWith("search"))
                     {
                         String[] cons = str.split(" ");
-                        if (cons.length > 1)
-                        {
+                        if (cons.length > 1) {
                             AllManager.getManager().search(cons);
                         }
-                        else
-                        {
+                        else {
                             AllManager.getManager().help();
                         }
+                    }
+                    else if (str.startsWith("open"))
+                    {
+                        AllManager.getManager().open(str);
                     }
                     else
                     {

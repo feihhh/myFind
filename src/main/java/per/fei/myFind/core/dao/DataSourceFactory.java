@@ -1,7 +1,7 @@
 package per.fei.myFind.core.dao;
 
 import com.alibaba.druid.pool.DruidDataSource;
-import jdk.internal.util.xml.impl.Input;
+import per.fei.myFind.config.DefaultConfig;
 
 import javax.sql.DataSource;
 import java.io.*;
@@ -43,7 +43,7 @@ public class DataSourceFactory {
                         String path = System.getProperty("user.dir")+ File.separator+"find_database";
                         instence.setUrl("jdbc:h2:"+path);
                         instence.setTestWhileIdle(false);
-                        initDataSource(false);
+                        initDataSource(DefaultConfig.getConfig().getIfBuildIndex());
                     }
                 }
             }
@@ -89,8 +89,6 @@ public class DataSourceFactory {
                 e.printStackTrace();
             }
         }
-
-
 ////    测试代码
 //    public static void main(String[] args) throws SQLException {
 //        String path = System.getProperty("user.dir")+ File.separator+"find_database";

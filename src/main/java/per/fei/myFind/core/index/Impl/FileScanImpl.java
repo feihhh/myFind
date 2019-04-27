@@ -30,8 +30,14 @@ public class FileScanImpl implements FileScan {
             }
         }
 
+        /**
+         * 打印拦截器
+         */
 //        FileIntercapter f = new PrintIntercapter();
 //        f.intercapter(file);
+        /**
+         * 写入拦截器
+         */
         FileIntercapter f1 = new ScannerIntercapter(new FileDaoImpl(DataSourceFactory.getInstence()));
         f1.intercapter(file);
 
