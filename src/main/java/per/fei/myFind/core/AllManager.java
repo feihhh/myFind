@@ -221,6 +221,7 @@ public class AllManager {
                 java.awt.Desktop.getDesktop().open(file);
                 System.out.println("打开文件："+path);
             } catch (IOException e) {
+                System.out.println("打开文件失败...");
                 e.printStackTrace();
             }
         }

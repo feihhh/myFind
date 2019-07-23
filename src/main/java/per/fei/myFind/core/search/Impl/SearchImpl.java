@@ -1,11 +1,9 @@
 package per.fei.myFind.core.search.Impl;
 
-import org.omg.PortableInterceptor.Interceptor;
 import per.fei.myFind.core.dao.DataSourceFactory;
 import per.fei.myFind.core.dao.FileDao;
 import per.fei.myFind.core.dao.FileDaoImpl.FileDaoImpl;
 import per.fei.myFind.core.intercapter.ThingClearIntercapter.ThingClearIntercapter;
-import per.fei.myFind.core.intercapter.ThingIntercapter;
 import per.fei.myFind.core.model.Condition;
 import per.fei.myFind.core.model.Things;
 import per.fei.myFind.core.search.Search;
@@ -55,7 +53,6 @@ public class SearchImpl implements Search {
                 this.queue.add(thing);
             }
         }
-
         return things;
     }
 
