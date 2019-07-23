@@ -1,6 +1,6 @@
 package per.fei.myFind.core.intercapter.Impl;
 
-import per.fei.myFind.core.common.ConvertFileToThings;
+import per.fei.myFind.core.common.convert.ConvertFileToThings;
 import per.fei.myFind.core.dao.FileDao;
 import per.fei.myFind.core.intercapter.FileIntercapter;
 import per.fei.myFind.core.model.Things;

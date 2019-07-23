@@ -22,6 +22,15 @@ public class FileScanImpl implements FileScan {
         //写入数据库拦截
         File file = new File(path);
         // 排除 要排除的目录
+//        for (String excludePath : handlePath.getExcludePath())
+//        {
+//            if (path.startsWith(excludePath))
+//            {
+//                return;
+//            }
+//        }
+
+
         for (String excludePath : handlePath.getExcludePath())
         {
             if (path.startsWith(excludePath))
@@ -57,8 +66,8 @@ public class FileScanImpl implements FileScan {
 
 
 
-//    public static void main(String[] args) {
-//        FileScan fileScan = new FileScanImpl();
-//        fileScan.index(new File("C:\\Users\\ASUS\\Desktop\\新建文件夹 (2)"));
-//    }
+    public static void main(String[] args) {
+        FileScan fileScan = new FileScanImpl();
+        fileScan.index("C:\\Users\\ASUS\\Desktop\\新建文件夹 (2)");
+    }
 }

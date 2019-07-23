@@ -29,4 +29,9 @@ public interface FileDao {
      */
     void delete(Things things);
 
+    /**
+     * 统计电脑中有多少文件
+     */
+    int countFileNum ();
+
 }

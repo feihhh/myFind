@@ -1,5 +1,4 @@
 package per.fei.myFind.core;
-
 import per.fei.myFind.config.DefaultConfig;
 import per.fei.myFind.config.HandlePath;
 import per.fei.myFind.core.dao.DataSourceFactory;
@@ -9,6 +8,8 @@ import per.fei.myFind.core.index.FileScan;
 import per.fei.myFind.core.index.Impl.FileScanImpl;
 import per.fei.myFind.core.minitor.FileMinitor;
 import per.fei.myFind.core.minitor.Impl.FileMnitorImpl;
+import per.fei.myFind.core.minitor.Impl.ShowMonitorImpl;
+import per.fei.myFind.core.minitor.ShowMonitor;
 import per.fei.myFind.core.model.Condition;
 import per.fei.myFind.core.model.FileType;
 import per.fei.myFind.core.model.Things;
@@ -35,6 +36,8 @@ public class AllManager {
 
     private FileScan fileScan;
 
+    private ShowMonitor showMonitor;
+
     private AllManager()
     {
         DataSource dataSource = DataSourceFactory.getInstence();
@@ -43,6 +46,7 @@ public class AllManager {
         fileMinitor = new FileMnitorImpl(this.fileDao);
         this.minitor();
         this.defaultConfigInit();
+        this.showMonitor = new ShowMonitorImpl();
     }
 
     private static volatile AllManager manager ;
@@ -62,20 +66,29 @@ public class AllManager {
         return manager;
     }
 
-    public void help ()
+    public void help()
     {
-        System.out.println("退出 ：quit");
-        System.out.println();
-        System.out.println("帮助 ：help");
-        System.out.println();
-        System.out.println("索引 ：index");
-        System.out.println();
-        System.out.println("打开文件 ：open <文件名> [打开第几个该文件]");
-        System.out.println();
-        System.out.println("搜索 ：search <文件名> " +
-                "[<文件类型>  doc | img | video | bin | archive| other]");
-        System.out.println("注意：打开文件是在上一次查询的基础上打开指定文件名的文件，如果没有查询，无法打开...");
-        System.out.println();
+        System.out.println("┎┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉");
+        System.out.println(" ▏                                       欢迎使用everything小程序     ");
+        System.out.println(" ▏ · index ----- 创建索引              ﹋﹋﹋﹋﹋﹋﹋﹋﹋﹋﹋﹋﹋     ");
+        System.out.println(" ▏ · help  ----- 帮助手册                                    ");
+        System.out.println(" ▏ · quit  ----- 退出程序                                    ");
+        System.out.println(" ▏ · count ----- 统计电脑中的文件数量                                    ");
+        System.out.println(" ▏ · scf   ----- 查看最近电脑中的文件改变情况                                   ");
+        System.out.println(" ▏ · open  ----- 打开查询列表中的第一个文件 ");
+        System.out.println(" ▏ · open 文件名 ----- 打开查询列表中所有同名文件(包括后缀名也相同) ");
+        System.out.println(" ▏ · open 文件名  n ----- 打开查询列表中第n个指定名字的文件(文件名中也要包含后缀名) ");
+        System.out.println(" ▏ · search 文件名  ----- 按文件名搜索文件    ");
+        System.out.println(" ▏ · search 文件名 文件类型 ----- 按文件名和文件类型搜索文件 ");
+        System.out.println(" ▏                                                     ");
+        System.out.println(" ▏                                           *  小提示  *            ");
+        System.out.println(" ▏ · 文件名支持拼音搜索，但不一定支持多音字 ﹋﹋﹋﹋﹋﹋﹋");
+        System.out.println(" ▏ · 如果是第一次使用这个这个程序，请先创建索引，再搜索文件");
+        System.out.println(" ▏ · 上述文件类型包括：DOC(文档类型) | IMG(图片类型) | VIDEO(视频/音频) | BIN(二进制文件) | ARCHIVE(压缩文件) | OTHER()其他类型 ");
+        System.out.println(" ▏ · 在使用open命令时，如果没有指定打开的是第几个这个名字的文件，就会打开所有同名文件  ");
+        System.out.println(" ▏   (同名文件多，电脑卡的情况，慎用...)          ");
+        System.out.println("┖┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉");
+
     }
 
     public void quit ()
@@ -176,14 +189,12 @@ public class AllManager {
                 {
                     if (opens[2].matches("[0-9]+")) {
                         int index = Integer.parseInt(opens[2]);
-                        if(index>0 && index < openList.size())
+                        if(index>=0 && index <= openList.size())
                         {
-                            String path = openList.get(index).getPath();
-                            System.out.println("打开文件:"+path);
-                            openFile(path);
+                            openFile(openList.get(index-1).getPath());
                         }
                         else {
-                            System.out.println("第三个参数输入过大...");
+                            System.out.println("第三个参数输入过大（或者有误）...");
                         }
                     }
                     else {
@@ -194,7 +205,6 @@ public class AllManager {
                 {
                     for (Things t : openList)
                     {
-                        System.out.println("打开文件："+t.getPath());
                         openFile(t.getPath());
                     }
                 }
@@ -209,7 +219,7 @@ public class AllManager {
         {
             try {
                 java.awt.Desktop.getDesktop().open(file);
-                System.out.println(path);
+                System.out.println("打开文件："+path);
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -220,61 +230,10 @@ public class AllManager {
         }
     }
 
-//    public void open(String name)
-//    {
-//        if (list != null)
-//        {
-//            Set<String> paths = new TreeSet<>();
-//            for (Things things : list)
-//            {
-//                if (things.getName().equals(name))
-//                {
-//                    paths.add(things.getPath());
-//                }
-//            }
-//            if (paths != null)
-//            {
-//                for (String path : paths)
-//                {
-//                    File file = new File(path);
-//                    if (file.exists())
-//                    {
-//                        try {
-//                            java.awt.Desktop.getDesktop().open(file);
-//                            System.out.println(path);
-//                        } catch (IOException e) {
-//                            e.printStackTrace();
-//                        }
-//                    }
-//                }
-//            }
-//        }
-//        else
-//        {
-//            System.out.println("请先查询文件，在打开...");
-//        }
-//    }
-
-//    public void open(String[] paths) {
-//        for (int i=1; i<paths.length; i++)
-//        {
-//            String path = paths[i];
-//            File file = new File(path);
-//            if (file.exists())
-//            {
-//                try {
-//                    java.awt.Desktop.getDesktop().open(file);
-//                    System.out.println(path);
-//                } catch (IOException e) {
-//                    e.printStackTrace();
-//                }
-//            }
-//            else
-//            {
-//                System.out.println(path+":file not exist");
-//            }
-//        }
-//    }
+    public void countFileNums()
+    {
+        System.out.println(this.fileDao.countFileNum());
+    }
 
     /**
      * 文件监控
@@ -335,8 +294,27 @@ public class AllManager {
         }
     }
 
-//    public static void main(String[] args) {
-//       String str = "3";
-//        System.out.println(str);
-//    }
+    public void show ()
+    {
+        List<String> list = showMonitor.show();
+        if (list != null)
+        {
+            int startIndex = 0;
+            startIndex = list.size()<=100?0:list.size()-99;
+            for (int i=startIndex; i<list.size(); i++)
+            {
+                System.out.println(list.get(i));
+            }
+        }
+        else
+        {
+            System.out.println("暂时还没有检测到有文件变化，客官请稍后在查~~~");
+        }
+    }
+
+    public static void main(String[] args) {
+        AllManager manager = new AllManager();
+        manager.defaultConfigInit();
+        System.out.println(DefaultConfig.getConfig());
+    }
 }

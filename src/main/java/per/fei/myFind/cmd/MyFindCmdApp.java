@@ -7,12 +7,13 @@ public class MyFindCmdApp {
     public static void main(String[] args)
     {
         System.out.println("欢迎使用everything...");
+        AllManager.getManager().help();
         Scanner scanner = new Scanner(System.in);
         while (true)
         {
-            System.out.print(">>");
+            System.out.print(">> ");
             String str = scanner.nextLine();
-            switch (str)
+            switch (str.trim())
             {
                 case "help":
                 {
@@ -27,6 +28,17 @@ public class MyFindCmdApp {
                 case "index":
                 {
                     AllManager.getManager().index();
+                    break;
+                }
+                case "count":
+                {
+                    AllManager.getManager().countFileNums();
+                    break;
+                }
+                case "showchangefile":
+                case "scf":
+                {
+                    AllManager.getManager().show();
                     break;
                 }
                 default:

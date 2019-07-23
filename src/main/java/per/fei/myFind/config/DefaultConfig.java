@@ -35,6 +35,7 @@ public class DefaultConfig {
      */
     private Integer interval = 10*6000;
 
+
     private static volatile DefaultConfig config ;
 
     private DefaultConfig() {
@@ -55,8 +56,8 @@ public class DefaultConfig {
         return config;
     }
 
-//    public static void main(String[] args)
-//    {
-//        System.out.println(DefaultConfig.getConfig());
-//    }
+    public static void main(String[] args)
+    {
+        System.out.println(DefaultConfig.getConfig());
+    }
 }

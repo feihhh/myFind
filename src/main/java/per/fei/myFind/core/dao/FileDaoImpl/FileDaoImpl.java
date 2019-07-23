@@ -1,6 +1,7 @@
 package per.fei.myFind.core.dao.FileDaoImpl;
 
 import per.fei.myFind.config.DefaultConfig;
+import per.fei.myFind.core.HanYuPingYing.PingYing;
 import per.fei.myFind.core.dao.DataSourceFactory;
 import per.fei.myFind.core.dao.FileDao;
 import per.fei.myFind.core.model.Condition;
@@ -21,16 +22,18 @@ public class FileDaoImpl implements FileDao {
         this.dataSource = DataSourceFactory.getInstence();
     }
 
+    /**
+     * 插入
+     * @param things 插入的对象
+     */
     @Override
     public void insert(Things things) {
-
         Connection connection = null;
-
         PreparedStatement statement = null;
-
+        PingYing pingYing = new PingYing();
         try {
             connection = this.dataSource.getConnection();
-            String sql = "insert into files (name, name_length, depth, file_type, path) values (?, ?, ?, ?, ?)";
+            String sql = "insert into files (name, name_length, depth, file_type, path, name_pinyin) values (?, ?, ?, ?, ?, ?)";
             statement = connection.prepareStatement(sql);
             String name = things.getName();
             statement.setString(1, name);
@@ -38,33 +41,24 @@ public class FileDaoImpl implements FileDao {
             statement.setInt(3, things.getDepth());
             statement.setString(4, things.getFileType().toString());
             statement.setString(5, things.getPath());
+            statement.setString(6, pingYing.wordsToPinYin(name));
             statement.executeUpdate();
 
         } catch (SQLException e) {
             e.printStackTrace();
         }
         finally {
-            if (connection != null)
-            {
-                try {
-                    connection.close();
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
-            }
-            if (statement != null)
-            {
-                try {
-                    statement.close();
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
-            }
+            closeResource(connection, statement, null);
         }
     }
 
     private DefaultConfig config = DefaultConfig.getConfig();
 
+    /**
+     * 查找
+     * @param condition 按条件查询
+     * @return
+     */
     @Override
     public LinkedHashSet<Things> find(Condition condition) {
 
@@ -73,6 +67,7 @@ public class FileDaoImpl implements FileDao {
         PreparedStatement statement = null;
         ResultSet resultSet = null;
 
+        //prep1: select name, name_length, depth, file_type, path from files where name like 'a%' or name_pinyin like 'a%' and file_type = 'VIDEO' order by name_length asc limit 30
         try {
             connection = this.dataSource.getConnection();
 
@@ -81,7 +76,9 @@ public class FileDaoImpl implements FileDao {
 //            order by depth asc limit 30;
             sql.append("select name, name_length, depth, file_type, path from files where ");
 
-            sql.append("name like '").append(condition.getName()).append("%'");
+            sql.append("(name like '").append(condition.getName()).append("%'");
+
+            sql.append(" or name_pinyin like '").append(condition.getName()).append("%')");
 
             if (condition.getFileType() != null)
             {
@@ -109,34 +106,15 @@ public class FileDaoImpl implements FileDao {
             e.printStackTrace();
         }
         finally {
-            if (connection != null)
-            {
-                try {
-                    connection.close();
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
-            }
-            if (statement != null)
-            {
-                try {
-                    statement.close();
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
-            }
-            if (resultSet != null)
-            {
-                try {
-                    resultSet.close();
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
-            }
+            closeResource(connection, statement, resultSet);
         }
         return set;
     }
 
+    /**
+     * 删除
+     * @param things 删除的对象
+     */
     @Override
     public void delete(Things things) {
         Connection connection = null;
@@ -154,24 +132,78 @@ public class FileDaoImpl implements FileDao {
             e.printStackTrace();
         }
         finally {
-            if (connection != null)
-            {
-                try {
-                    connection.close();
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
-            }
-            if (statement != null)
-            {
-                try {
-                    statement.close();
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
-            }
+            closeResource(connection, statement, null);
         }
 
+    }
+
+    /**
+     * 统计文件数量
+     * @return 返回数量
+     */
+    @Override
+    public int countFileNum() {
+
+        int fileNums = 0;
+
+        Connection connection = null;
+        PreparedStatement statement = null;
+        ResultSet resultSet = null;
+
+        try {
+            connection = this.dataSource.getConnection();
+
+            StringBuffer sql = new StringBuffer();
+//           select count(name) from files;
+            sql.append("select count(*) from files");
+
+            statement = connection.prepareStatement(sql.toString());
+
+            resultSet = statement.executeQuery();
+
+            while (resultSet.next())
+            {
+                fileNums = resultSet.getInt(1);
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        finally {
+            closeResource(connection, statement, resultSet);
+        }
+        return fileNums;
+    }
+
+    /**
+     * 关闭资源
+     */
+    private static void closeResource(Connection connection, PreparedStatement statement, ResultSet resultSet)
+    {
+        if (connection != null)
+        {
+            try {
+                connection.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        if (statement != null)
+        {
+            try {
+                statement.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        if (resultSet != null)
+        {
+            try {
+                resultSet.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
     }
 
 //    测试代码
@@ -204,14 +236,9 @@ public class FileDaoImpl implements FileDao {
 //            fileDao.delete(things);
 //        }
 //
-public static void main(String[] args) {
-    String s = "aaa.a";
-    System.out.println(s.contains("."));
-    String[] a = s.split("\\.");
-    for (String i : a)
-    {
-        System.out.println(i);
-    }
-}
-
+//    public static void main(String[] args) {
+//
+//        FileDao dao = new FileDaoImpl(DataSourceFactory.getInstence());
+//        System.out.println(dao.countFileNum());
+//    }
 }

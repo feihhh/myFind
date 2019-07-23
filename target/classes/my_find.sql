@@ -1,5 +1,6 @@
 create table if not exists files(
   name varchar (1024),
+  name_pinyin varchar(1024),
   name_length int,
   depth int ,
   file_type varchar (10),

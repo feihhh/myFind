@@ -1,0 +1,5 @@
+Sat Apr 27 16:26:07 CST 2019>> FileCreate:C:\Users\All Users\Kingsoft\KIS\kich\1460-8805e375-5cc411ff-31c.ich
+Sat Apr 27 16:26:07 CST 2019>> FileCreate:C:\Users\All Users\Kingsoft\KIS\kich\1512-ff79a0b0-5cc4120c-9c.ich
+Sat Apr 27 16:26:08 CST 2019>> FileCreate:C:\Users\All Users\Kingsoft\KIS\kich\4868-88d4f7a6-5cc411ff-31c.ich
+Sat Apr 27 16:26:08 CST 2019>> FileCreate:C:\Users\All Users\Kingsoft\KIS\kich\561-46fd935c-5cc411b5-109.ich
+Sat Apr 27 16:26:29 CST 2019>> FileCreate:D:\WorkPlace\Java\find_in_windows\monitor.txt

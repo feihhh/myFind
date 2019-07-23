@@ -5,14 +5,14 @@ import org.apache.commons.io.monitor.FileAlterationMonitor;
 import org.apache.commons.io.monitor.FileAlterationObserver;
 import per.fei.myFind.config.DefaultConfig;
 import per.fei.myFind.config.HandlePath;
-import per.fei.myFind.core.common.ConvertFileToThings;
+import per.fei.myFind.core.common.convert.ConvertFileToThings;
+import per.fei.myFind.core.common.date.MyDate;
 import per.fei.myFind.core.dao.FileDao;
-import per.fei.myFind.core.dao.FileDaoImpl.FileDaoImpl;
 import per.fei.myFind.core.minitor.FileMinitor;
 import per.fei.myFind.core.minitor.MonitorToFIle;
 
 import java.io.File;
-import java.io.FileFilter;
+import java.util.Date;
 import java.util.Set;
 
 public class FileMnitorImpl extends FileAlterationListenerAdaptor implements FileMinitor {
@@ -89,7 +89,7 @@ public class FileMnitorImpl extends FileAlterationListenerAdaptor implements Fil
      */
     @Override
     public void onDirectoryCreate(File directory) {
-        write.write("DirectoryCreate:"+directory.getAbsolutePath());
+        write.write(MyDate.getTime() +" | DirectoryCreate:"+directory.getAbsolutePath());
         this.fileDao.insert(convert.convertFileToThings(directory));
     }
 
@@ -99,7 +99,7 @@ public class FileMnitorImpl extends FileAlterationListenerAdaptor implements Fil
      */
     @Override
     public void onDirectoryDelete(File directory) {
-        write.write("DirectoryDelete:"+directory.getAbsolutePath());
+        write.write(MyDate.getTime() +" | DirectoryDelete:"+directory.getAbsolutePath());
         this.fileDao.delete(this.convert.convertFileToThings(directory));
     }
 
@@ -109,13 +109,13 @@ public class FileMnitorImpl extends FileAlterationListenerAdaptor implements Fil
      */
     @Override
     public void onFileCreate(File file) {
-        write.write("FileCreate:"+file.getAbsolutePath());
+        write.write(MyDate.getTime() +" | FileCreate:"+file.getAbsolutePath());
         this.fileDao.insert(this.convert.convertFileToThings(file));
     }
 
     @Override
     public void onFileDelete(File file) {
-        write.write("FileDelete:"+file.getAbsolutePath());
+        write.write(MyDate.getTime() +" | FileDelete:"+file.getAbsolutePath());
         this.fileDao.delete(this.convert.convertFileToThings(file));
     }
     //--------------------------------------------------------
