@@ -18,7 +18,6 @@
 
 项目采用分层结构，如下图：
 
-![1563950162789](C:\Users\ASUS\AppData\Roaming\Typora\typora-user-images\1563950162789.png)
 
 ## 5、各个模块简单说明
 
