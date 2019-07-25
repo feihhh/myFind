@@ -10,6 +10,8 @@
 
     <packaging>jar</packaging>
     <name>myFind</name>
+	
+
 
     <!--项目描述-->
     <description>
@@ -63,7 +65,8 @@
             <artifactId>commons-io</artifactId>
             <version>2.6</version>
         </dependency>
-        <!--pinyin4j —— 实现拼音搜索功能的jar包-->
+		
+        <!--pinyin4j —— 将字符转为对应的拼音，实现拼音搜索功能的jar包-->
         <dependency>
             <groupId>com.belerweb</groupId>
             <artifactId>pinyin4j</artifactId>
