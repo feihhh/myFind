@@ -106,3 +106,19 @@ start  jre/bin/java -jar find_in_windows-1.0.0.jar
 
 ## <font color=green> 7、运行结果展示</font>
 
+拼音搜索：
+
+![image](https://github.com/feihhh/myFind/raw/master/readmeIMG/show1.png)
+
+打开文件：
+
+![image](https://github.com/feihhh/myFind/raw/master/readmeIMG/show_open.png)
+
+查询：
+
+![image](https://github.com/feihhh/myFind/raw/master/readmeIMG/show_search.png)
+
+根据文件名称-类型查询：
+
+![image](https://github.com/feihhh/myFind/raw/master/readmeIMG/show_search_type.png)
+
