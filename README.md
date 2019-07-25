@@ -19,7 +19,7 @@
 
 项目采用分层结构，如下图：
 
-![image](https://github.com/feihhh/myFind/raw/master/structure.png)
+![image](https://github.com/feihhh/myFind/raw/master/readmeIMG/structure.png)
 
 
 ## 5、各个模块简单说明
